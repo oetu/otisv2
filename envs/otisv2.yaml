@@ -1,0 +1,16 @@
+name: otisv2
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip
+  - pip:
+    - torch==2.15.0
+    - torchvision==0.29.2
+    - timm==1.0.31
+    - numpy==2.3.5
+    - scipy==1.17.1
+    - scikit-learn==1.9.1
+    - matplotlib==3.11.2
+    - wandb==0.31.0
+    - aeon==1.6.0
