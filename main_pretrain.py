@@ -1054,7 +1054,9 @@ def main(args):
         intra_kshot_state = None
         if args.online_kshot and args.online_kshot_intra_epoch_steps > 0:
             patches_per_sample_t = int(args.time_steps) // int(args.patch_width)
-            corpus_tokens = int((dataset_train.index[:, 1] * patches_per_sample_t).sum())
+            # the data set behind the current loader: the annealing phase can replace
+            # (and free) the pre-training data set
+            corpus_tokens = int((data_loader_train.dataset.index[:, 1] * patches_per_sample_t).sum())
             tokens_per_step = corpus_tokens // max(len(data_loader_train), 1)
             intra_kshot_state = {
                 "records": [],

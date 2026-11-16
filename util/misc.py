@@ -710,6 +710,10 @@ def add_weight_decay_timm_lrd(model, weight_decay=1e-5, skip_list=(), layer_deca
             }
             if use_muon:
                 param_groups[group_name]["use_muon"] = muon_flag
+                if is_student_head_override:
+                    # read by build_optimizer: the MUON weight decay of the
+                    # [CLS] head keeps this multiplier
+                    param_groups[group_name]["wd_mult"] = student_head_wd_mult
 
         param_groups[group_name]["params"].append(param)
 
@@ -728,9 +732,11 @@ def build_optimizer(param_groups, args):
                 g["base_lr"] = args.muon_lr
                 g["momentum"] = getattr(args, "muon_momentum", 0.95)
                 g["lr"] = args.muon_lr * scale
-                # Override weight decay for MUON groups (only those that had decay)
+                # Override weight decay for MUON groups (only those that had decay).
+                # A [CLS]-head group keeps its multiplier (--student_head_wd_mult,
+                # stored as "wd_mult"); every other group has none.
                 if g["weight_decay"] > 0:
-                    g["weight_decay"] = muon_wd
+                    g["weight_decay"] = muon_wd * g["wd_mult"] if "wd_mult" in g else muon_wd
             else:
                 g["base_lr"] = args.lr
                 g.setdefault("betas", (0.9, 0.95))
