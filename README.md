@@ -2,6 +2,8 @@
 
 Official code and pre-trained weights of OTISv2, a general-purpose time series encoder. OTISv2 combines masked data modelling with self-distillation and a KoLeo regulariser, which act directly on the feature space of the encoder.
 
+**Paper:** [arXiv:2611.20981](https://arxiv.org/abs/2611.20981)
+
 ## Environment Setup
 Run the following commands from the root directory of this project to set up the environment. This is needed only once.
 ```
@@ -151,7 +153,8 @@ Please cite the following work:
   title={Breaking Feature Collapse in Self-Supervised Time Series Encoders},
   author={Turgut, {\"O}zg{\"u}n and Rueckert, Daniel},
   booktitle={Advances in Neural Information Processing Systems},
-  year={2026}
+  year={2026},
+  url={https://arxiv.org/abs/2611.20981}
 }
 ```
 
