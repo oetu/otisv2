@@ -2,7 +2,7 @@
 
 Official code and pre-trained weights of OTISv2, a general-purpose time series encoder. OTISv2 combines masked data modelling with self-distillation and a KoLeo regulariser, which act directly on the feature space of the encoder.
 
-**Paper:** [arXiv:2611.20981](https://arxiv.org/abs/2611.20981)
+**Paper:** [Breaking Feature Collapse in Self-Supervised Time Series Encoders](https://arxiv.org/abs/2611.20981). Advances in Neural Information Processing Systems (NeurIPS). 2026.
 
 ## Environment Setup
 Run the following commands from the root directory of this project to set up the environment. This is needed only once.
